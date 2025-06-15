@@ -109,7 +109,7 @@ export default function LandingPage() {
                 title: "Quality First",
                 description: "Enterprise-grade solutions built with best practices and industry standards."
               }
-            ].map((item, index) => (
+            ].map((item) => (
               <div 
                 key={item.title}
                 className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
@@ -145,7 +145,7 @@ export default function LandingPage() {
               { number: 2, title: "Planning", description: "Detailed architecture and sprint planning" },
               { number: 3, title: "Development", description: "Agile development with daily updates" },
               { number: 4, title: "Delivery", description: "Thorough testing and seamless deployment" }
-            ].map((step, index) => (
+            ].map((step) => (
               <div 
                 key={step.number}
                 className="text-center transform transition-all duration-300 hover:scale-105"
@@ -187,7 +187,7 @@ export default function LandingPage() {
                 title: "DevOps Engineers",
                 description: "Experts in CI/CD, cloud platforms, and infrastructure automation"
               }
-            ].map((team, index) => (
+            ].map((team) => (
               <div 
                 key={team.title}
                 className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
@@ -207,7 +207,7 @@ export default function LandingPage() {
             Ready to Build Something Amazing?
           </h2>
           <p className="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto font-medium">
-            Let's discuss how we can deliver your project with our industry-leading expertise and efficiency.
+            Let&apos;s discuss how we can deliver your project with our industry-leading expertise and efficiency.
           </p>
           <Link 
             href="/project-inquiry" 

@@ -3,11 +3,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import AnimatedFormField from './ui/AnimatedFormField'
 import AnimatedButton from './ui/AnimatedButton'
 import AnimatedCard from './ui/AnimatedCard'
 import AnimatedModal from './ui/AnimatedModal'
-import AnimatedTooltip from './ui/AnimatedTooltip'
 import { transitions } from '@/utils/animations'
 import { ProjectFormData } from '../types/project'
 import { ProgressBar } from './ui/ProgressBar'
@@ -16,15 +14,6 @@ import { ProjectDetailsStep } from './forms/ProjectDetailsStep'
 import { TechnicalRequirementsStep } from './forms/TechnicalRequirementsStep'
 import { FeaturesAndScopeStep } from './forms/FeaturesAndScopeStep'
 import { AdditionalInfoStep } from './forms/AdditionalInfoStep'
-
-interface StepProps {
-  formData: ProjectFormData
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void
-  handleCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>, field: keyof ProjectFormData) => void
-  onNext?: () => void
-  onBack?: () => void
-  onSubmit?: (e: React.FormEvent) => void
-}
 
 export default function ProjectInquiry() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -128,8 +117,14 @@ export default function ProjectInquiry() {
       >
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Project Inquiry</h1>
-          <p className="text-gray-600">Tell us about your project and we'll get back to you shortly.</p>
+          <p className="text-gray-600">Tell us about your project and we&apos;ll get back to you shortly.</p>
         </div>
+
+        {error && (
+          <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-600">{error}</p>
+          </div>
+        )}
 
         <AnimatedCard className="mb-8">
           <ProgressBar currentStep={currentStep} totalSteps={5} />

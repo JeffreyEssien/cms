@@ -1,9 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDb } from '../../utils/mongodb'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+type User = {
+  fullName: string
+  email: string
+  password: string
+  referralCode?: string
+  createdAt: Date
+}
+
+type ApiResponse<T = unknown> = {
+  success: boolean
+  error?: string
+  user?: T
+  id?: string
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ApiResponse>
+) {
   const db = await getDb()
-  const collection = db.collection('users')
+  const collection = db.collection<User>('users')
 
   if (req.method === 'POST') {
     // Signup: create a new user
@@ -24,8 +42,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         referralCode,
         createdAt: new Date()
       })
-      res.status(201).json({ success: true, id: result.insertedId })
-    } catch (error) {
+      res.status(201).json({ success: true, id: result.insertedId.toString() })
+    } catch {
       res.status(500).json({ success: false, error: 'Failed to create user' })
     }
   } else if (req.method === 'GET') {
@@ -48,7 +66,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       } else {
         res.status(401).json({ success: false, error: 'Invalid credentials' })
       }
-    } catch (error) {
+    } catch {
       res.status(500).json({ success: false, error: 'Failed to validate user' })
     }
   } else {

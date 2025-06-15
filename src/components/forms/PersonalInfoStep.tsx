@@ -174,7 +174,7 @@ export const PersonalInfoStep: React.FC<FormStepProps> = ({
       >
         <div className="text-center">
           <p className="mb-4 text-gray-800 text-lg">
-            You will be contacted by the admin's social handle on <span className="font-semibold text-indigo-700">{selectedSocial}</span>.
+            You will be contacted by the admin&apos;s social handle on <span className="font-semibold text-indigo-700">{selectedSocial}</span>.
           </p>
           <p className="text-sm text-gray-500">
             We&apos;ll use this information to contact you about your project.
